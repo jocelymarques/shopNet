@@ -20,7 +20,7 @@ const CardProduct = ({ product }: { product: { id: number; title: string; descri
                         title: product.title,
                         price: product.price,
                         description: product.description,
-                        category: "electronics", // ou você pode adicionar category ao tipo do produto
+                        category: "electronics", 
                         image: product.image
                     }
                 ]
@@ -38,10 +38,8 @@ const CardProduct = ({ product }: { product: { id: number; title: string; descri
                 const result = await response.json()
                 console.log('Produto adicionado ao carrinho:', result)
                 
-                // Mostrar notificação de sucesso
                 setShowSuccessAlert(true)
                 
-                // Esconder a notificação após 3 segundos
                 setTimeout(() => {
                     setShowSuccessAlert(false)
                 }, 3000)
@@ -56,11 +54,11 @@ const CardProduct = ({ product }: { product: { id: number; title: string; descri
     }
 
     return (
-        <div className="w-full max-w-sm p-2 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 flex flex-col h-full hover:scale-105 transition-transform duration-300 ease-in-out relative">
+        <div className="w-full max-w-sm p-2 bg-white border border-gray-200 rounded-lg shadow-sm flex flex-col h-full hover:scale-105 transition-transform duration-300 ease-in-out relative">
             
             {/* Notificação de Sucesso */}
             {showSuccessAlert && (
-                <div className=" text-center absolute top-2 left-2 right-2 z-10 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-100 dark:text-green-400 animate-pulse" role="alert">
+                <div className="text-center absolute top-2 left-2 right-2 z-10 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 animate-pulse" role="alert">
                     <span className="font-medium">Produto adicionado ao carrinho com sucesso!</span>
                 </div>
             )}
@@ -73,21 +71,21 @@ const CardProduct = ({ product }: { product: { id: number; title: string; descri
             <div className="px-5 pb-5 flex flex-col flex-grow">
                 <div className="flex-grow">
                     <div onClick={handleProductClick} className="cursor-pointer">
-                        <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white text-center hover:text-blue-600 transition-colors">{product.title}</h5>
+                        <h5 className="text-xl font-semibold tracking-tight text-gray-900 text-center hover:text-blue-600 transition-colors">{product.title}</h5>
                     </div>
                     <div className="flex mt-2.5 mb-5 justify-center items-center text-center">
-                        <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">{product.rating.rate}</span>
-                        <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">{product.rating.count} avaliações</span>
+                        <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm ms-3">{product.rating.rate}</span>
+                        <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm ms-3">{product.rating.count} avaliações</span>
                     </div>
                 </div>
                 <div className="mt-auto">
                     <div className="flex items-center justify-center text-center mb-4">
-                        <span className="text-3xl font-bold text-gray-900 dark:text-white">R$ {product.price}</span>
+                        <span className="text-3xl font-bold text-gray-900">R$ {product.price}</span>
                     </div>
                     <div className="text-center">
                         <button 
                             onClick={handleAddToCart}
-                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition-colors"
+                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors"
                         >
                             Adicionar ao Carrinho
                         </button>

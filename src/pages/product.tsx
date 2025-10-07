@@ -52,10 +52,8 @@ const Product = () => {
                 const result = await response.json()
                 console.log('Produto adicionado ao carrinho:', result)
                 
-                // Mostrar notificação de sucesso
                 setShowSuccessAlert(true)
                 
-                // Esconder a notificação após 3 segundos
                 setTimeout(() => {
                     setShowSuccessAlert(false)
                 }, 3000)
@@ -113,11 +111,11 @@ const Product = () => {
     }
 
     return (
-        <div className="container mx-auto px-4 py-8 bg-gray-700 mt-6 rounded-lg shadow-md mx-auto sm:px-6 lg:px-8 relative">
+        <div className="container mx-auto px-4 py-8 bg-white mt-6 rounded-lg shadow-md sm:px-6 lg:px-8 relative">
             
             {/* Notificação de Sucesso */}
             {showSuccessAlert && (
-                <div className="absolute top-4 left-4 right-4 z-10 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 animate-pulse" role="alert">
+                <div className="absolute top-4 left-4 right-4 z-10 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 animate-pulse" role="alert">
                     <span className="font-medium">Produto adicionado ao carrinho com sucesso!</span>
                 </div>
             )}
@@ -139,7 +137,7 @@ const Product = () => {
                 </div>
                 
                 <div className="space-y-4">
-                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+                    <h1 className="text-3xl font-bold text-gray-900">
                         {product.title}
                     </h1>
                     
@@ -162,7 +160,7 @@ const Product = () => {
                         </div>
                     )}
                     
-                    <div className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    <div className="text-gray-700 leading-relaxed">
                         {product.description}
                     </div>
                     

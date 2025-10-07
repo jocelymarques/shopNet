@@ -33,15 +33,14 @@ const Cart = () => {
     useEffect(() => {
         const fetchCartsAndProducts = async () => {
             try {
-                // Buscar carrinho (assumindo usuário ID 1)
                 const cartsResponse = await fetch('https://fakestoreapi.com/carts/user/1')
                 const cartsData = await cartsResponse.json()
 
                 if (cartsData.length > 0) {
-                    const userCart = cartsData[0] // Pegar o primeiro carrinho do usuário
+                    const userCart = cartsData[0] 
                     setCarts([userCart])
 
-                    // Buscar detalhes dos produtos
+                    
                     const productPromises = userCart.products.map((item: CartProduct) =>
                         fetch(`https://fakestoreapi.com/products/${item.productId}`)
                             .then(res => res.json())
@@ -62,7 +61,6 @@ const Cart = () => {
     }, [])
 
     const removeFromCart = async (productId: number) => {
-        // Simular remoção do carrinho
         const updatedProducts = products.filter(product => product.id !== productId)
         setProducts(updatedProducts)
     }
@@ -79,14 +77,11 @@ const Cart = () => {
                 const result = await response.json()
                 console.log('Carrinho deletado:', result)
                 
-                // Limpar estado local
                 setCarts([])
                 setProducts([])
                 
-                // Mostrar notificação de sucesso
                 setShowDeleteAlert(true)
                 
-                // Esconder a notificação após 3 segundos
                 setTimeout(() => {
                     setShowDeleteAlert(false)
                 }, 3000)
@@ -136,14 +131,14 @@ const Cart = () => {
             <div className="container mx-auto px-4 py-8 relative">
                 {/* Notificação de Carrinho Limpo */}
                 {showDeleteAlert && (
-                    <div className="absolute top-4 left-4 right-4 z-10 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 animate-pulse" role="alert">
+                    <div className="absolute top-4 left-4 right-4 z-10 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 animate-pulse" role="alert">
                         <span className="font-medium">Carrinho limpo com sucesso!</span>
                     </div>
                 )}
                 
                 <div className="flex flex-col items-center justify-center min-h-96">
-                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Seu Carrinho</h1>
-                    <div className="text-xl text-gray-600 dark:text-gray-400 mb-6">Seu carrinho está vazio</div>
+                    <h1 className="text-3xl font-bold text-gray-900 mb-4">Seu Carrinho</h1>
+                    <div className="text-xl text-gray-600 mb-6">Seu carrinho está vazio</div>
                     <button 
                         onClick={() => navigate('/')} 
                         className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
@@ -159,13 +154,13 @@ const Cart = () => {
         <div className="container mx-auto px-4 py-8 relative">
             {/* Notificação de Carrinho Limpo */}
             {showDeleteAlert && (
-                <div className="absolute top-4 left-4 right-4 z-10 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 animate-pulse" role="alert">
+                <div className="absolute top-4 left-4 right-4 z-10 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 animate-pulse" role="alert">
                     <span className="font-medium">Carrinho limpo com sucesso!</span>
                 </div>
             )}
 
             <div className="flex justify-between items-center mb-8">
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Seu Carrinho</h1>
+                <h1 className="text-3xl font-bold text-gray-900">Seu Carrinho</h1>
                 <div className="flex space-x-4">
                     <button 
                         onClick={clearCart}
@@ -185,13 +180,13 @@ const Cart = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Lista de Produtos */}
                 <div className="lg:col-span-2">
-                    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                    <div className="bg-white rounded-lg shadow-md">
                         {carts[0].products.map((cartItem) => {
                             const product = products.find(p => p.id === cartItem.productId)
                             if (!product) return null
 
                             return (
-                                <div key={product.id} className="flex items-center p-6 border-b border-gray-200 dark:border-gray-700 last:border-b-0">
+                                <div key={product.id} className="flex items-center p-6 border-b border-gray-200 last:border-b-0">
                                     <img 
                                         src={product.image} 
                                         alt={product.title}
@@ -200,7 +195,7 @@ const Cart = () => {
                                     />
                                     <div className="flex-grow ml-4">
                                         <h3 
-                                            className="text-lg font-semibold text-gray-900 dark:text-white cursor-pointer hover:text-blue-600"
+                                            className="text-lg font-semibold text-gray-900 cursor-pointer hover:text-blue-600"
                                             onClick={() => navigate(`/product/${product.id}`)}
                                         >
                                             {product.title}
@@ -227,20 +222,20 @@ const Cart = () => {
 
                 {/* Resumo do Pedido */}
                 <div className="lg:col-span-1">
-                    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 sticky top-4">
-                        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Resumo do Pedido</h2>
+                    <div className="bg-white rounded-lg shadow-md p-6 sticky top-4">
+                        <h2 className="text-xl font-bold text-gray-900 mb-4">Resumo do Pedido</h2>
                         
                         <div className="space-y-2 mb-4">
-                            <div className="flex justify-between text-gray-600 dark:text-gray-400">
+                            <div className="flex justify-between text-gray-600">
                                 <span>Subtotal ({carts[0].products.length} itens)</span>
                                 <span>R$ {calculateTotal().toFixed(2)}</span>
                             </div>
-                            <div className="flex justify-between text-gray-600 dark:text-gray-400">
+                            <div className="flex justify-between text-gray-600">
                                 <span>Frete</span>
                                 <span className="text-green-600">Grátis</span>
                             </div>
-                            <hr className="border-gray-200 dark:border-gray-700" />
-                            <div className="flex justify-between text-lg font-bold text-gray-900 dark:text-white">
+                            <hr className="border-gray-200" />
+                            <div className="flex justify-between text-lg font-bold text-gray-900">
                                 <span>Total</span>
                                 <span>R$ {calculateTotal().toFixed(2)}</span>
                             </div>
