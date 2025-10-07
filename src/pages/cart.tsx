@@ -60,10 +60,10 @@ const Cart = () => {
         fetchCartsAndProducts()
     }, [])
 
-    const removeFromCart = async (productId: number) => {
-        const updatedProducts = products.filter(product => product.id !== productId)
-        setProducts(updatedProducts)
-    }
+    // const removeFromCart = async (productId: number) => {
+    //     const updatedProducts = products.filter(product => product.id !== productId)
+    //     setProducts(updatedProducts)
+    // }
 
     const clearCart = async () => {
         if (!carts[0]) return
