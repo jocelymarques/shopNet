@@ -1,21 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Shop.Net</title>
-    <script type="text/javascript">
-      var pathSegmentsToKeep = 1;
-      var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + 
-        '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
-      );
+    <meta http-equiv="refresh" content="0; url=/shopnet/" />
+    <script>
+      // Redireciona para a rota correta do SPA
+      var path = location.pathname.replace('/shopnet', '');
+      location.replace('/shopnet/' + (path ? '#' + path : ''));
     </script>
   </head>
-  <body>
-  </body>
+  <body></body>
 </html>
